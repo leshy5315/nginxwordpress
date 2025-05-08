@@ -12,12 +12,17 @@ services:
       WORDPRESS_DB_NAME: ${DB_NAME}
     volumes:
       - wordpress:/var/www/html
+    links:
+      - db
 
   nginx:
     build: ./
     ports:
       - 80:80
     container_name: nginx
+    links:
+      - wordpress
+    restart: always
 
   db:
     image: mysql:8.0
