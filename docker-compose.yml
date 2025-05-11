@@ -12,7 +12,7 @@ services:
       WORDPRESS_DB_NAME: ${DB_NAME}
     volumes:
       - wordpress:/var/www/html
-    links:
+    depends_on:
       - db
 
   nginx:
@@ -20,7 +20,7 @@ services:
     ports:
       - 80:80
     container_name: nginx
-    links:
+    depends_on:
       - wordpress
     restart: always
 
